@@ -5,15 +5,23 @@ import (
 )
 
 func main() {
-	var board = [9]bool{false, false, false, false, false, false, false, false, false}
-	board2 := [9]int{0, 0, 0, 0, 0, 0, 0, 0, 0}
+	board := [9]int{0, 0, 0, 0, 0, 0, 0, 0, 0}
+
 	fmt.Println("You want to play?")
 	fmt.Println("The board is:")
-	fmt.Println(board)
-	fmt.Println("The board2 is:")
-	fmt.Println(board2)
+	displayBoard(board)
 }
 
-// func displayBoard(board [9]) {
+func displayBoard(board [9]int) {
+	for i, v := range board {
+		if v == 0 {
+			fmt.Printf("%d", i)
+		}
 
-// }
+		if (i+1)%3 == 0 {
+			fmt.Printf("\n")
+		} else {
+			fmt.Printf(" | ")
+		}
+	}
+}
