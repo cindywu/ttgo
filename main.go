@@ -1,20 +1,17 @@
 package main
 
-// import "fmt"
-// import "math"
-// import "math/rand"
-
-// Better yet, you can import multiple packages in a single line:
 import (
 	"fmt"
-	"math"
-	"math/rand"
 )
 
 func main() {
+	var board = [9]bool{false, false, false, false, false, false, false, false, false}
+	board2 := [9]int{0, 0, 0, 0, 0, 0, 0, 0, 0}
 	fmt.Println("You want to play?")
-	fmt.Println("My favorite number is", rand.Intn(10))
-	fmt.Printf("Now you have %g problems.\n", math.Sqrt(7))
+	fmt.Println("The board is:")
+	fmt.Println(board)
+	fmt.Println("The board2 is:")
+	fmt.Println(board2)
 }
 
 // func displayBoard(board [9]) {
