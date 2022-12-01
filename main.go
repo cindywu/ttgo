@@ -14,13 +14,27 @@ func main() {
 	fmt.Println("Player ", player, " plays:")
 	currentMove := makeAMove()
 
-	executeMove(currentMove)
+	board = executeMove(currentMove, board, player)
+	fmt.Println("The board is:")
+	displayBoard(board)
 
 	// executeMove(moveLocation, player, board)
 }
 
-func executeMove(move int) {
+func executeMove(move int, board [9]int, player int) [9]int {
+	if move < 10 && board[move] != 0 {
+		fmt.Println(move, " is already taken")
+		move = makeAMove()
+	}
+
+	for move > 9 {
+		// TODO: check move is valid int
+		fmt.Println("Please enter a valid move")
+		move = makeAMove()
+	}
+
 	fmt.Println("Move executed")
+	return board
 }
 
 func makeAMove() int {
