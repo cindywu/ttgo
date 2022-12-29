@@ -6,34 +6,58 @@ import (
 
 func main() {
 	board := [9]string{"", "", "", "", "", "", "", "", ""}
-	player := 1
+	// winCombos := [8][3]int{
+	// 	{1, 2, 3},
+	// 	{4, 5, 6},
+	// 	{7, 8, 9},
+	// 	{1, 4, 7},
+	// 	{2, 5, 8},
+	// 	{3, 6, 9},
+	// 	{1, 5, 9},
+	// 	{3, 5, 7}}
 
-	fmt.Println("You want to play?")
-	fmt.Println("The board is:")
+	player := "X"
+
+	// win := false
+
+	fmt.Println(`tic tac toe, three in a row...`)
 	displayBoard(board)
-	fmt.Println("Player ", player, " plays:")
+	fmt.Println(player, "'s turn! pick a spot...")
 	currentMove := makeAMove()
-
 	board = executeMove(currentMove, board, player)
-	fmt.Println("The board is:")
 	displayBoard(board)
 
-	// executeMove(moveLocation, player, board)
 }
 
-func executeMove(move int, board [9]string, player int) [9]string {
-	if move < 10 && board[move] != "" {
-		fmt.Println(move, " is already taken")
-		move = makeAMove()
+func switchPlayer(player string) string {
+	if player == "O" {
+		player = "X"
+	} else {
+		player = "O"
+	}
+	return player
+}
+
+func checkIfWin(win bool, board [9]string, winCombos [8][3]int) bool {
+	for i := 0; i < len(winCombos); i++ {
+		win = false
+	}
+	return win
+}
+
+func executeMove(move int, board [9]string, player string) [9]string {
+	if move < 10 && board[move] == "" {
+		fmt.Println(player, "picked", move)
+		board[move-1] = player
+	} else if board[move] != "" {
+		fmt.Println("That spot is taken, pick another!")
 	}
 
 	for move > 9 {
-		// TODO: check move is valid int
 		fmt.Println("Please enter a valid move")
 		move = makeAMove()
 	}
 
-	fmt.Println("Move executed")
 	return board
 }
 
@@ -47,6 +71,8 @@ func displayBoard(board [9]string) {
 	for i, v := range board {
 		if v == "" {
 			fmt.Printf("%d", i+1)
+		} else {
+			fmt.Printf(v)
 		}
 
 		if (i+1)%3 == 0 {
