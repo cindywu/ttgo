@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	board := [9]int{0, 0, 0, 0, 0, 0, 0, 0, 0}
+	board := [9]string{"", "", "", "", "", "", "", "", ""}
 	player := 1
 
 	fmt.Println("You want to play?")
@@ -21,8 +21,8 @@ func main() {
 	// executeMove(moveLocation, player, board)
 }
 
-func executeMove(move int, board [9]int, player int) [9]int {
-	if move < 10 && board[move] != 0 {
+func executeMove(move int, board [9]string, player int) [9]string {
+	if move < 10 && board[move] != "" {
 		fmt.Println(move, " is already taken")
 		move = makeAMove()
 	}
@@ -43,9 +43,9 @@ func makeAMove() int {
 	return moveLocation
 }
 
-func displayBoard(board [9]int) {
+func displayBoard(board [9]string) {
 	for i, v := range board {
-		if v == 0 {
+		if v == "" {
 			fmt.Printf("%d", i+1)
 		}
 
